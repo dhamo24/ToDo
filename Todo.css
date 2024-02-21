@@ -1,0 +1,125 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'poppins',sans-serif;
+    box-sizing: border-box;
+    
+}
+body{
+    background-color: #7FFFD4;
+}
+.todo-app{
+    max-width: 400px;
+    margin: 50px auto 10px;
+    padding: 10px 10px 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h2{
+    font-size:xx-large;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    color: black;
+}
+.row{
+    display: flex;
+    align-items: center;
+    background: rgb(234, 228, 228);
+    justify-content: center;
+    border-radius: 30px;   
+}
+
+.card h3 {
+    border: #555 1px solid;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+input{
+    flex:1;
+    border:none;
+    outline: none;
+    background: transparent;
+    padding: 20px;
+    font-weight: 14px;
+}
+button{
+    border:none;
+    outline:none;
+    padding:19px 50px;
+    background: grey;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+.todos-wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 10x;
+    padding: 20px;
+}
+
+@media (max-width: 648px) {
+    .todos-wrapper {
+        flex-direction: column;    
+    }
+}
+
+.card{
+    font-size: 20px;
+    font-weight: 700;
+    width:100%;
+    background:white;
+    margin:  10px;
+    padding: 20px;
+    border-radius: 10px;
+    background-image: (to right, red , yellow)
+}
+
+ul li {
+    list-style: none;
+    font-size: 17px;
+    padding: 13px 8px 13px 55px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+}
+ul li::before{
+    content: '';
+    position:absolute;
+    height:28px;
+    width: 28px;
+    border-radius: 520%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 12px;
+    left: 8px;
+}
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+ul li span:hover{
+    background: #edeef0;
+}
+
+.container {
+    min-height: 100px; /* Set a fixed height when no content */
+  height: auto; /* Let the height adjust based on content */
+}

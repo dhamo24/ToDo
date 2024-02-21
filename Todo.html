@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Kanban Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Todo.css">
+</head>
+
+<body>
+    <div class="todo-app">
+        <h2>Kanban Board</h2>
+        <div class="row">
+            <input type="text" placeholder="Add your Text" id="input-box" onkeydown="addItem()">
+            <button onclick="createToDoItem()" disabled id="addItemBtn"> Add</button>
+        </div>
+    </div>
+    <div class="todos-wrapper">
+        <div class="card">
+            <h3>TODO</h3>
+            <ul id="todo-container" class="container">
+
+            </ul>
+        </div>
+        <div class="card">
+            <h3>In Progress</h3>
+            <ul id="inprogress-container" class="container">
+                <!-- Drag and drop tasks will be added here -->
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Completed</h3>
+            <ul id="completed-container" class="container">
+                <!-- Drag and drop tasks will be added here -->
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script src="Todo.js"></script>
+
+</html>
