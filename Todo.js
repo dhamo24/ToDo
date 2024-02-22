@@ -6,7 +6,6 @@ function createToDoItem() {
     document.getElementById('addItemBtn').style.background = "grey";
     createliElement('todo-container', todoData);
     saveToLocalStorage('todoItems', Date.now(), todoData);
-
 }
 
 
@@ -33,6 +32,30 @@ function removeItem(event) {
     event.target.parentNode.remove();
 }
 
+// Function to create a new in-progress item
+function createInProgressItem(data) {
+    createliElement('inprogress-container', data);
+    saveToLocalStorage('inProgressItems', Date.now(), data);
+}
+
+// Function to create a new completed item
+function createCompletedItem(data) {
+    createliElement('completed-container', data);
+    saveToLocalStorage('completedItems', Date.now(), data);
+}
+
+// Move a task to in-progress state
+function moveTaskToInProgress(itemId, itemData) {
+    moveTask(itemId, itemData, 'inprogress-container');
+    saveToLocalStorage('inProgressItems', itemId, itemData);
+}
+
+// Move a task to completed state
+function moveTaskToCompleted(itemId, itemData) {
+    moveTask(itemId, itemData, 'completed-container');
+    saveToLocalStorage('completedItems', itemId, itemData);
+}
+
 
 
 // Function to save todo item to local storage
@@ -46,8 +69,6 @@ function saveToLocalStorage(key, id, data) {
     existingValue[id] = data;
     localStorage.setItem(key, JSON.stringify(existingValue));
 }
-
-
 
 
 // Function to retrieve from local storage
@@ -105,18 +126,46 @@ function dragDrop(e) {
     e.preventDefault();
     var data = e.dataTransfer.getData("text");
     var elementId = e.dataTransfer.getData('elementId');
-    console.log("elementId", elementId)
-    console.log(e.target.id)
-    console.log(data)
+    var targetContainerId = e.target.id;
+
     var element = document.getElementById(elementId);
+
     // If the event target is a different container
     if (e.target !== element.parentElement) {
         // Remove the node from its current parent
         element.parentElement.removeChild(element);
+        // Remove the task from local storage
+        removeFromLocalStorage(elementId, targetContainerId);
         // Append it to the new container
-        createliElement(e.target.id, data);
+        if (targetContainerId === 'todo-container') {
+            createToDoItem(data);
+        } else if (targetContainerId === 'inprogress-container') {
+            createInProgressItem(data);
+        } else if (targetContainerId === 'completed-container') {
+            createCompletedItem(data);
+        }
     }
 }
+
+// Function to remove task from local storage
+function removeFromLocalStorage(itemId, targetContainerId) {
+    let key;
+    if (targetContainerId === 'inprogress-container') {
+        key = 'inProgressItems';
+    } else if (targetContainerId === 'completed-container') {
+        key = 'completedItems';
+    } else {
+        return; // No need to remove from local storage for todo items
+    }
+    let existingValue = getFromLocalStorage(key);
+    if (existingValue !== null) {
+        existingValue = JSON.parse(existingValue);
+        delete existingValue[itemId];
+        localStorage.setItem(key, JSON.stringify(existingValue));
+    }
+}
+
+
 
 /* Drag and Drop Functions Ends */
 
