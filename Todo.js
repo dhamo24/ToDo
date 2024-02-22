@@ -44,19 +44,6 @@ function createCompletedItem(data) {
     saveToLocalStorage('completedItems', Date.now(), data);
 }
 
-// Move a task to in-progress state
-function moveTaskToInProgress(itemId, itemData) {
-    moveTask(itemId, itemData, 'inprogress-container');
-    saveToLocalStorage('inProgressItems', itemId, itemData);
-}
-
-// Move a task to completed state
-function moveTaskToCompleted(itemId, itemData) {
-    moveTask(itemId, itemData, 'completed-container');
-    saveToLocalStorage('completedItems', itemId, itemData);
-}
-
-
 
 // Function to save todo item to local storage
 function saveToLocalStorage(key, id, data) {
