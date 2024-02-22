@@ -6,6 +6,7 @@ function createToDoItem() {
     document.getElementById('addItemBtn').style.background = "grey";
     createliElement('todo-container', todoData);
     saveToLocalStorage('todoItems', Date.now(), todoData);
+
 }
 
 
@@ -32,6 +33,8 @@ function removeItem(event) {
     event.target.parentNode.remove();
 }
 
+
+
 // Function to save todo item to local storage
 function saveToLocalStorage(key, id, data) {
     let existingValue = getFromLocalStorage(key);
@@ -43,6 +46,8 @@ function saveToLocalStorage(key, id, data) {
     existingValue[id] = data;
     localStorage.setItem(key, JSON.stringify(existingValue));
 }
+
+
 
 
 // Function to retrieve from local storage
